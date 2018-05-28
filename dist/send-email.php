@@ -2,9 +2,9 @@
 
 
 if (isset($_POST['i_name'])) {
-    $to = 'info@janheder.cz'; 
-    $subject = 'datinnovations.com contact form';
-    $from = "hello@datinnovations.com";
+    $to = 'info@datinnovations.com'; 
+    $subject = 'Message from contact form on datinnovations.com';
+    $email_from = "info@datinnovations.com";
 
     $name = $_POST['i_name'];
     $date = $_POST['i_date'];
@@ -38,7 +38,11 @@ if (isset($_POST['i_name'])) {
     ";
 
 
-    $headers = "From: hello@datinnovations.com";
+    
+    $headers = 'From: '.$email_from."\r\n".
+    'Content-Type: text/plain; charset=UTF-8' . "\r\n" .
+    'Para: WebSite'  .  "\r\n" .
+    'X-Mailer: PHP/' . phpversion();
 
 
     mail($to, $subject, $message, $headers);

@@ -140,6 +140,14 @@ select.form-control:not([size]):not([multiple]) {
     bottom: 1.5rem;
     left: 1.5rem;
     opacity: 0.5;
+    @include transition (0.2s ease all);
+}
+.form-check__label{
+    &:hover, &:active, &:focus{
+        .form-check__box{
+            opacity: 1;
+        }
+    }
 }
 .form-check__inline{
     display: inline-block;
@@ -158,12 +166,13 @@ select.form-control:not([size]):not([multiple]) {
     width: 100%;
     display: block;
     @include absolute-position(0, 0, 0, 0);
+    @include transition (0.2s ease all);
 }
 .form-check__input:checked ~ .form-check__box.checkbox::before{
     background: $brand-primary;
     border: 2px solid $brand-primary;
 }
-.form-check__input:checked ~ .form-check__box.checkbox::after{
+.form-check__box.checkbox::after{
     content: "";
     display: block;
     @include absolute-position(2px, 0, 0, 5px);
@@ -171,7 +180,11 @@ select.form-control:not([size]):not([multiple]) {
     height: 8px;
     border: solid $bg-white;
     border-width: 0 2px 2px 0;
-    @include rotate(45);
+    @include transform(rotate(45deg) scale(0));
+    @include transition(0.2s ease all);
+}
+.form-check__input:checked ~ .form-check__box.checkbox::after{
+    @include transform(rotate(45deg) scale(1));
 }
 .form-check__box.radio::before{
     content: "";
@@ -460,7 +473,7 @@ input[type=number]::-webkit-outer-spin-button {
     background: rgba(75,194,40,0.2);
 }
 
-.form-group__input:not(:focus):invalid:not(:placeholder-shown):not([type="date"]) {
+.form-group__input:not(:focus):invalid:not(:placeholder-shown):not([type="date"]){
     border: 1px solid rgba(201,23,23,0.2);
 }
 
@@ -468,6 +481,29 @@ input[type=number]::-webkit-outer-spin-button {
 
 .form-group__input:not(:focus):invalid:not(:placeholder-shown):not([type="date"]) + .form-group__label + .form-group__error{
     display: block;
+}
+
+/* IE Edge 16+ CSS */ 
+@supports (-ms-ime-align:auto){
+    .form-group__label{
+        top: -10px;
+        transform: translateY(-100%);
+        left: 0;
+    }
+    .form-group__wrap, .form-check {
+        margin-top: 3rem;
+    }
+}
+/* IE 10, 11 CSS */ 
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none){
+    .form-group__label{
+        top: -10px;
+        transform: translateY(-100%);
+        left: 0;
+    }
+    .form-group__wrap, .form-check {
+        margin-top: 3rem;
+    }
 }
 
 

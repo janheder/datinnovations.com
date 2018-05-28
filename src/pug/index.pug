@@ -27,7 +27,8 @@ html(lang=lang)
     body
         include _nav.pug
         include _modal-form.pug
-        section.hero
+        section.hero(id="anchor-hero")
+            .hero__bg-symbols
             .container.hero__container
                 h1.hero__title Developing cuting edge technologies to improve daily life.    
                 p.hero__text Focus on exceptional precision in design and development guarantee highest quality software solutions.
@@ -63,24 +64,26 @@ html(lang=lang)
                             p.services-single__text Our team of 3D designers and developers is capable of creating and adjusting another layer of our life.
 
 
-        section.app
+        section.app(id="anchor-app")
             .container
                 .row
                     .col-12.col-sm-12.col-md-6.col-lg-6.col-xl-6.app__col-1
                         .app__img-wrap
-                            img.app__img(data-src=URLbase+"img/app-screen.png" src=URLbase+"img/app-screen.png")
+                            img.app__img(data-src=URLbase+"img/app-screen.png" src=URLbase+"img/app-screen.png" alt="Facy App" title="Facy App")
 
                     .col-12.col-sm-12.col-md-6.col-lg-6.col-xl-6.app__col-2
                         h5.app__subtitle Our work
                         h3.app__title Facy App
                         p.app_text Enjoy fun with your friends and Facy – fun and fancy 3D selfie camera with amazing realtime 3D masks and effects.
 
-                        a.btn.app__appstore-btn(href="https://itunes.apple.com/us/app/facy-3d-face-selfie-changer/id1343112514") #[span #[img(src=URLbase+"img/apple-icon.svg")]] #[span Available on the #[b App Store]]
+                        a.btn.app__appstore-btn(href="https://itunes.apple.com/us/app/facy-3d-face-selfie-changer/id1343112514") #[span #[img(src=URLbase+"img/apple-icon.svg" alt="Available on the App Store")]] #[span Available on the #[b App Store]]
+
 
         section.cta(id="anchor-cta")
             .container.cta__container
                 h3.cta__title If you are looking for an interesting investment opportunity, do not hesitate to contact us.
-                span.btn.btn-white.cta__button(data-toggle="modal" data-target="#modal-form") Let's talk #[span.arrow-icon.btn__icon]
+                .cta__btns
+                    span.btn.btn-white.cta__button(data-toggle="modal" data-target="#modal-form") Let's talk #[span.arrow-icon.btn__icon]
 
         
         include _footer.pug

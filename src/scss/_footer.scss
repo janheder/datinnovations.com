@@ -169,5 +169,11 @@ footer{
     .copyright__pull{
         float: right;
         line-height: 1.8;
+        margin-top: 1rem;
+
+        .copyright__link{
+            margin-left: 2rem;
+            margin-right: 2rem;
+        }
     }
 }

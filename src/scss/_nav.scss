@@ -151,6 +151,8 @@
     .navbar-main{
         height: 50px;
         padding: 0;
+        @include flexbox();
+        @include flex-direction(row);
     }
     .navbar-toggler{
         width: 100px;
@@ -158,6 +160,7 @@
         padding: 0;
         border: 0;
         position: relative;
+        display: none;
     }
     .navbar-toggler__icon{
         left: 25%;
@@ -171,23 +174,26 @@
     }
     .navbar-brand{
         margin: 0;
-        margin-left: 20px;
+        margin-left: 15px;
         height: 36px;
+        @include flexbox();
+        @include flex-direction(row);
+        @include align-items(center);
     }
     .navbar-brand__img{
         height: 36px;
     }
     .navbar-nav .navbar-nav__link {
-        color: $text-primary;
+        color: $text-white;
         font-size: 1.7rem;
-        height: 56px;
+        height: 50px;
         padding: 0 20px;
         @include flexbox();
         @include flex-direction(row);
         @include align-items(center);
 
         &:hover, &:focus, &:active{
-            color: $brand-primary;
+            color: $text-white;
         }
     }
     .caret-icon.white {
@@ -209,6 +215,11 @@
         display: block;
         border-bottom: 1px solid $border-primary;
     }
+    .navbar-nav{
+        @include flexbox();
+        @include flex-direction(row);     
+        @include justify-content(flex-end);  
+    }
     body.active {
         overflow: hidden;
         height: 100%;
@@ -219,17 +230,18 @@
         overflow: hidden;
     }
     header .navbar-collapse{
-        position: fixed;
+        position: relative;
         right: 0px;
         top: 0px;
         display: block;
-        @include translate(100%,0%);
+        // @include translate(100%,0%);
         height: 100% !important;
-        width: 240px;
+        width: auto;
         @include transition(0.3s transform ease);
         overflow-y: auto;
         overflow-x: hidden;
-        background: $bg-light;
+        background: transparent;
+        @include flex-basis(0);
 
         & .navbar-toggler{
             z-index: 2;
@@ -282,6 +294,10 @@
             height: 100%;
         }
     }
+    .navbar-nav .navbar-nav__link{
+        padding: 0 10px;
+        font-size: 1.5rem;
+    }
 }
 
 /*------------------------------------*\
@@ -331,10 +347,10 @@
             top: 0px;
         }
         .navbar-nav__link{
-            color: $text-primary;
+            color: $text-white;
         
             &:hover, &:active, &:focus{
-                color: $brand-primary;
+                color: $text-white;
             }
         }
     }  
