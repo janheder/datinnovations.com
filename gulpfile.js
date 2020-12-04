@@ -8,13 +8,20 @@ var pug = require('gulp-pug');
 var uglify = require('gulp-uglify');
 var pump = require('pump');
 var concat = require('gulp-concat');
+var postcss = require('gulp-postcss');
+var autoprefixer= require('autoprefixer');
+var changed = require('gulp-changed');
+var sassGlob = require('gulp-sass-glob');
 
 // COMPILE SASS
 gulp.task('sass', function () {
+  var processors = [ autoprefixer()];
   return gulp.src('./src/scss/**/*.scss')
     .pipe(sourcemaps.init())
+    .pipe(sassGlob())
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(concat('style.min.css'))
+    .pipe(postcss(processors))
     .pipe(sourcemaps.write('./maps'))
     .pipe(gulp.dest('./dist/css'));
 });
@@ -27,8 +34,9 @@ gulp.task('sass:watch', function () {
 // COMPILE PUG
 gulp.task('pug', function buildHTML() {
   return gulp.src('./src/pug/**/*.pug')
-  .pipe(pug({pretty: 1}))
-  .pipe(gulp.dest('./dist'));
+    .pipe(changed('./dist'))
+    .pipe(pug({pretty: 1}))
+    .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('pug:watch', function () {
